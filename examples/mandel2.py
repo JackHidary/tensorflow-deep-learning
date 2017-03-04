@@ -27,7 +27,7 @@ Z = X+1j*Y
 xs = tf.constant(Z.astype(np.complex64))
 zs = tf.Variable(xs)
 ns = tf.Variable(tf.zeros_like(xs, tf.float32))
-tf.global_variables_initializer().run()
+tf.global_variables_initializer().run(session=tf.InteractiveSession())
 # Compute the new values of z: z^2 + x
 zs_ = zs*zs + xs
 
@@ -46,4 +46,5 @@ step = tf.group(
   )
 
 for i in range(200): step.run()
-DisplayFractal(ns.eval())
+
+print(DisplayFractal(ns.eval()))
